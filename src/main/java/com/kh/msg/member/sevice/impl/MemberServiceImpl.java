@@ -1,12 +1,12 @@
-package com.aug.spring.member.service.impl;
+package com.kh.msg.member.sevice.impl;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.aug.spring.member.domain.Member;
-import com.aug.spring.member.service.MemberService;
-import com.aug.spring.member.store.MemberStore;
+import com.kh.msg.member.domain.Member;
+import com.kh.msg.member.sevice.MemberService;
+import com.kh.msg.member.store.MemberStore;
 
 @Service
 public class MemberServiceImpl implements MemberService{

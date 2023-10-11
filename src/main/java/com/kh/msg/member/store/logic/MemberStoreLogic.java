@@ -1,10 +1,10 @@
-package com.aug.spring.member.store.logic;
+package com.kh.msg.member.store.logic;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.aug.spring.member.domain.Member;
-import com.aug.spring.member.store.MemberStore;
+import com.kh.msg.member.domain.Member;
+import com.kh.msg.member.store.MemberStore;
 
 @Repository
 public class MemberStoreLogic implements MemberStore{

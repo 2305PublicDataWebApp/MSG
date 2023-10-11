@@ -1,8 +1,8 @@
-package com.aug.spring.member.store;
+package com.kh.msg.member.store;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.aug.spring.member.domain.Member;
+import com.kh.msg.member.domain.Member;
 
 public interface MemberStore {
 

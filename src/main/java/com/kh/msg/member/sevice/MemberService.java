@@ -1,7 +1,7 @@
-package com.aug.spring.member.service;
+package com.kh.msg.member.sevice;
 
-import com.aug.spring.member.domain.Member;
-import com.aug.spring.member.store.MemberStore;
+import com.kh.msg.member.domain.Member;
+import com.kh.msg.member.store.MemberStore;
 
 public interface MemberService {
 

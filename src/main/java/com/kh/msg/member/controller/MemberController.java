@@ -1,4 +1,4 @@
-package com.aug.spring.member.controller;
+package com.kh.msg.member.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.aug.spring.member.domain.Member;
-import com.aug.spring.member.service.MemberService;
-import com.aug.spring.member.store.MemberStore;
+import com.kh.msg.member.domain.Member;
+import com.kh.msg.member.sevice.MemberService;
+import com.kh.msg.member.store.MemberStore;
 
 @Controller
 public class MemberController {
