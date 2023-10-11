@@ -31,7 +31,7 @@
 			var windowHeight = $(window).height(), footerHeight = $(
 					'.footer').height(), heightDocument = (windowHeight)
 					+ ($('.main-content').height())
-					+ ($('.footer').height()) - 10
+					+ ($('.footer').height()) - 32
 					- ($('.main-header').height());
 
 			$('#scroll-animate, #scroll-animate-main').css({

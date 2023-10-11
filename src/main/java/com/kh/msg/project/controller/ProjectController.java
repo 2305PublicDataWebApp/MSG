@@ -8,9 +8,15 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ProjectController {
 
-	@RequestMapping(value="/project/main.do", method=RequestMethod.GET)
+	@RequestMapping(value="/project/myInfo.do", method=RequestMethod.GET)
 	public ModelAndView ShowProjectPage(ModelAndView mv) {
-		mv.setViewName("project/main");
+		mv.setViewName("project/projectMyPage");
+		return mv;
+	}
+	
+	@RequestMapping(value="/project/subProject.do", method=RequestMethod.GET)
+	public ModelAndView ShowSubProjectPage(ModelAndView mv) {
+		mv.setViewName("project/subProjectPage");
 		return mv;
 	}
 	
@@ -21,10 +27,4 @@ public class ProjectController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/moim/moimSide.do", method=RequestMethod.GET)
-	public ModelAndView showMoimSide(ModelAndView mv) {
-		
-		mv.setViewName("moim/moimSide");
-		return mv;
-	}
 }

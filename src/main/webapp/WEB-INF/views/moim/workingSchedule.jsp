@@ -8,7 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
       <link rel="stylesheet" href="/resources/css/reset.css">
-      <link rel="stylesheet" href="/resources/css/moim.css">
+      <link rel="stylesheet" href="/resources/css/project/project.css">
       <script src="https://kit.fontawesome.com/dbb376a4c5.js" crossorigin="anonymous"></script>
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
 	  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 	  <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-      <title>Special Alone</title>
+      <title>모임페이지</title>
    </head>
    <body>
       <header class="navbar navbar-expand navbar-dark bg-dark bd-navbar sticky-top">
