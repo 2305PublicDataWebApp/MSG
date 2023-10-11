@@ -13,4 +13,18 @@ public class ProjectController {
 		mv.setViewName("project/main");
 		return mv;
 	}
+	
+	@RequestMapping(value="/moim/workingSchedule.do", method=RequestMethod.GET)
+	public ModelAndView showWorkingSchedule(ModelAndView mv) {
+		
+		mv.setViewName("moim/workingSchedule");
+		return mv;
+	}
+	
+	@RequestMapping(value="/moim/moimSide.do", method=RequestMethod.GET)
+	public ModelAndView showMoimSide(ModelAndView mv) {
+		
+		mv.setViewName("moim/moimSide");
+		return mv;
+	}
 }
