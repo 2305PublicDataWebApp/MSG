@@ -9,14 +9,10 @@
       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
       <link rel="stylesheet" href="/resources/css/reset.css">
       <link rel="stylesheet" href="/resources/css/moim.css">
-      <script src="https://kit.fontawesome.com/dbb376a4c5.js" crossorigin="anonymous"></script>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
       <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-	  <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+	  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <title>Special Alone</title>
    </head>
@@ -58,7 +54,7 @@
 		      <label for="datepicker">날짜 선택:</label>
     		  <input type="text" id="datepicker" onchange="changeDate();">
 		      <h1 class="titleDate"></h1>
-
+			  <p id="p1"></p>
 		    </main>
 		  </div>
 		</div>
@@ -71,6 +67,30 @@
         function changeDate(){
         	const dataVal = document.querySelector("#datepicker").value;
         	document.querySelector(".titleDate").innerText = dataVal;
+        	var data = {'dataVal': dataVal};
+        	$.ajax({
+    	        url : '/moim/teamWorkingTime.do',
+    	        data : data,
+    	        type : 'GET',
+    	        dataType : "text",
+    	        success : function (data) {
+    	        	let str = "";
+    	        	if(data == "noData"){
+    	        		str = "해당날짜에 출/퇴근 기록이 없습니다.";
+    	        		$("#p1").html(str);
+    	        	} else {
+    	        		const dataArray = JSON.parse(data);
+    	        		str += dataArray;
+    	        		for(let i = 0; i < dataArray.length; i++){
+							str += "참가자 : " + dataArray[i].userId + ", 출근 : " + dataArray[i].startWork + ", 퇴근 : " + dataArray[i].endWork + "<br>";
+						}
+    	        		str+=dataArray.length;
+    	        		$("#p1").html(str);
+    	        	}
+    	         }, error : function(){
+						alert("Ajax 오류! 관리자에게 문의하세요.");
+					}
+    	     })
         }
     </script>
    </body>
