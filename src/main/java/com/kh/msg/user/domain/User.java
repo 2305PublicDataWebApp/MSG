@@ -1,4 +1,4 @@
-package com.aug.spring.user.domain;
+package com.kh.msg.user.domain;
 
 import java.sql.Timestamp;
 

@@ -1,12 +1,12 @@
-package com.aug.spring.user.service.impl;
+package com.kh.msg.user.service.impl;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.aug.spring.user.domain.User;
-import com.aug.spring.user.service.UserService;
-import com.aug.spring.user.store.UserStore;
+import com.kh.msg.user.domain.User;
+import com.kh.msg.user.service.UserService;
+import com.kh.msg.user.store.UserStore;
 
 @Service
 public class UserServiceImpl implements UserService{

@@ -1,7 +1,7 @@
-package com.aug.spring.user.service;
+package com.kh.msg.user.service;
 
-import com.aug.spring.user.domain.User;
-import com.aug.spring.user.store.UserStore;
+import com.kh.msg.user.domain.User;
+import com.kh.msg.user.store.UserStore;
 
 public interface UserService {
 

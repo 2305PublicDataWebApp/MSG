@@ -1,4 +1,4 @@
-package com.aug.spring.user.controller;
+package com.kh.msg.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.aug.spring.user.domain.User;
-import com.aug.spring.user.service.UserService;
-import com.aug.spring.user.store.UserStore;
+import com.kh.msg.user.domain.User;
+import com.kh.msg.user.service.UserService;
+import com.kh.msg.user.store.UserStore;
 
 @Controller
 public class UserController {

@@ -1,10 +1,10 @@
-package com.aug.spring.user.store.logic;
+package com.kh.msg.user.store.logic;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.aug.spring.user.domain.User;
-import com.aug.spring.user.store.UserStore;
+import com.kh.msg.user.domain.User;
+import com.kh.msg.user.store.UserStore;
 
 @Repository
 public class UserStoreLogic implements UserStore{

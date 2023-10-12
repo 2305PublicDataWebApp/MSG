@@ -1,8 +1,8 @@
-package com.aug.spring.user.store;
+package com.kh.msg.user.store;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.aug.spring.user.domain.User;
+import com.kh.msg.user.domain.User;
 
 public interface UserStore {
 

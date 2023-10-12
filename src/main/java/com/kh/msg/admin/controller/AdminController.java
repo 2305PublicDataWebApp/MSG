@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.msg.admin.service.AdminService;
-import com.kh.msg.member.domain.Member;
 import com.kh.msg.notice.domain.PageInfo;
+import com.kh.msg.user.domain.User;
 
 @Controller
 public class AdminController {
@@ -45,7 +45,7 @@ public class AdminController {
 	@RequestMapping(value="/admin/memberList.do", method=RequestMethod.GET)
 	public ModelAndView showMemberListForm(ModelAndView mv) {
 		mv.setViewName("admin/memberList");
-		List<Member> mList = new ArrayList<Member>();
+		List<User> mList = new ArrayList<User>();
 		return mv;
 	}
 	

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.kh.msg.admin.service.AdminService;
 import com.kh.msg.admin.store.AdminStore;
-import com.kh.msg.member.domain.Member;
 import com.kh.msg.notice.domain.PageInfo;
+import com.kh.msg.user.domain.User;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -26,8 +26,8 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<Member> selectMemberList(PageInfo pInfo) {
-		List<Member> mList = aStore.selectMemberList(sqlSession, pInfo);
+	public List<User> selectMemberList(PageInfo pInfo) {
+		List<User> mList = aStore.selectMemberList(sqlSession, pInfo);
 		return mList;
 	}
 
