@@ -8,8 +8,10 @@
 	</settings>
 	<typeAliases>
 <!-- 		<typeAlias type="com.kh.bluewave.user.domain.User" alias="User"/> -->
+		<typeAlias type="com.kh.msg.project.domain.WorkingTime" alias="WorkingTime"/>
 	</typeAliases>
 	<mappers>
 <!-- 		<mapper resource="mappers/user-mapper.xml"/> -->
+		<mapper resource="mappers/workingTime-mapper.xml"/>
 	</mappers>
 </configuration>
