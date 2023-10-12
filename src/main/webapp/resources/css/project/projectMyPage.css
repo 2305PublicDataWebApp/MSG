@@ -49,6 +49,29 @@
     background-color: aqua;
 }
 
+.user-img {
+	height: 50%;
+}
+
+.user-profile {
+	display: flex;
+    height: 50%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-name {
+	height: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.mypage-btn {
+	height: 50%;
+    display: flex;
+    align-items: center;
+}
+
 .calendar-container {
 	height: 100%;
     width: 33%;

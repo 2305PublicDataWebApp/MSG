@@ -27,17 +27,22 @@
 		<div class="row flex-nowrap">
 			<div class="col-3 bd-sidebar">
 				<div class="bd-sidebar-body">
+					<a href="#">
+						<button
+							class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+							data-bs-toggle="collapse" aria-expanded="false">My Page</button>
+					</a>
 					<li class="mb-1">
 						<button
 							class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
 							data-bs-toggle="collapse" data-bs-target="#dashboard-collapse"
-							aria-expanded="false">Dashboard</button>
+							aria-expanded="false">Project1</button>
 						<div class="collapse" id="dashboard-collapse">
 							<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-								<li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Overview</a></li>
-								<li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Weekly</a></li>
-								<li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Monthly</a></li>
-								<li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Annually</a></li>
+								<li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">subProject1</a></li>
+								<li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">subProject2</a></li>
+								<li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">subProject3</a></li>
+								<li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">subProject4</a></li>
 							</ul>
 						</div>
 					</li>
@@ -53,9 +58,16 @@
 				</div>
 				<div class="bd-content-content">
 					<div class="user-info">
-						<div class="user-img"></div>
+						<div class="user-img">
+							유저 이미지
+						</div>
 						<div class="user-profile">
-							<div class="user-name"></div>
+							<div class="user-name">
+								유저이름
+							</div>
+							<div class="mypage-btn">
+								<button class="user-update-btn">수정하기</button>
+							</div>
 							<!-- 유저 정보 넣기 -->
 						</div>
 					</div>
@@ -64,10 +76,10 @@
 					</div>
 					<div class="content-right">
 						<div class="user-schedule">
-							<!-- 유저 일정 -->
+							<!-- 유저 일정 게시판 형태로 출력 -->
 						</div>
 						<div class="project-notice">
-							<!-- Project들의 공지 -->
+							<!-- Project들의 공지 게시판 형태로 출력 -->
 						</div>
 					</div>
 				</div>
