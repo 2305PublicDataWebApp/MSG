@@ -28,9 +28,12 @@
 				<input type="text" id="noticeTitle" name="noticeTitle" value="${notice.noticeTitle }">
 			</div>
 			<div class="form-group">
-				<textarea id="summernote" class="noticeContent" name="noticeContent"></textarea>
-	                <label>첨부파일</label>
-					<input type="file" name="uploadFile" class="file"><br><br>
+				<textarea id="summernote" class="noticeContent" name="noticeContent">
+				</textarea>
+<!-- 	                <label>첨부파일</label> -->
+<!-- 					<input type="file" id="uploadFile" name="uploadFile" accept="image/*" onchange="previewImage()"> -->
+<!-- 					<label for="uploadFile" class="file-upload-label">파일 선택</label> -->
+<!-- 					<img id="imagePreview" src="" alt="미리보기" style="max-width: 300px; display: none;"><br><br> -->
 	                <button type="submit" class="writeBtn success">
 	                <i class="fa-solid fa-check"></i>&nbsp;&nbsp;글 등록</button>
 			</div>
@@ -54,6 +57,22 @@
 	        height: 200,
 	        lang: 'ko-KR'
 	      });
+	      
+// 	      function previewImage() {
+// 	    	    const uploadFile = document.getElementById('uploadFile');
+// 	    	    const imagePreview = document.getElementById('imagePreview');
+
+// 	    	    if (uploadFile.files && uploadFile.files[0]) {
+// 	    	        const reader = new FileReader();
+
+// 	    	        reader.onload = function (e) {
+// 	    	            imagePreview.src = e.target.result;
+// 	    	            imagePreview.style.display = 'block';
+// 	    	        }
+
+// 	    	        reader.readAsDataURL(uploadFile.files[0]);
+// 	    	    }
+// 	    	}
 	    </script>
 	</body>
 </html>

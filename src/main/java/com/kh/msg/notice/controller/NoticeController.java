@@ -41,29 +41,29 @@ public class NoticeController {
 	public ModelAndView Register(
 			ModelAndView mv
 			, @ModelAttribute Notice notice
-			, @RequestParam(value="uploadFile", required=false) MultipartFile uploadFile
+//			, @RequestParam(value="uploadFile", required=false) MultipartFile uploadFile
 //			, HttpSession session
 			, HttpServletRequest request) {
 		try {
 //			String userId = (String)session.getAttribute("userId");
 //			if(userId != null && !userId.equals("")) {
 //				notice.setUserId(userId);
-				if(uploadFile != null && !uploadFile.getOriginalFilename().equals("")) {
+//				if(uploadFile != null && !uploadFile.getOriginalFilename().equals("")) {
 					// 파일정보(이름, 리네임, 경로, 크기) 및 파일저장
-					Map<String, Object> rMap = this.saveFile(request, uploadFile);
-					notice.setNoticeFileName((String)rMap.get("fileName"));
-					notice.setNoticeFileRename((String)rMap.get("fileRename"));
-					notice.setNoticeFilePath((String)rMap.get("filePath"));
-					notice.setNoticeFileLength((long)rMap.get("fileLength"));
+//					Map<String, Object> rMap = this.saveFile(request, uploadFile);
+//					notice.setNoticeFileName((String)rMap.get("fileName"));
+//					notice.setNoticeFileRename((String)rMap.get("fileRename"));
+//					notice.setNoticeFilePath((String)rMap.get("filePath"));
+//					notice.setNoticeFileLength((long)rMap.get("fileLength"));
 //				}
 				int result = nService.insertNotice(notice);
 				mv.setViewName("redirect:/notice/list.do");
-			} else {
-				mv.addObject("msg", "로그인이 필요합니다.");
-				mv.addObject("error", "로그인이 필요합니다.");
-				mv.addObject("url", "/index.jsp");
-				mv.setViewName("common/serviceFailed");
-			}
+//			} else {
+//				mv.addObject("msg", "로그인이 필요합니다.");
+//				mv.addObject("error", "로그인이 필요합니다.");
+//				mv.addObject("url", "/index.jsp");
+//				mv.setViewName("common/serviceFailed");
+//			}
 		} catch (Exception e) {
 			mv.addObject("msg", "댓글 등록이 완료되지 않았습니다.");
 			mv.addObject("error", e.getMessage());
@@ -73,36 +73,36 @@ public class NoticeController {
 		return mv;
 	}
 	
-	public Map<String, Object> saveFile(HttpServletRequest request, MultipartFile uploadFile) throws Exception {
-		Map<String, Object> fileMap = new HashMap<String, Object>();
-		// resources 경로 구하기
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		// 파일 저장경로 구하기
-		String savePath = root + "\\nuploadFiles";
-		// 파일 이름 구하기
-		String fileName = uploadFile.getOriginalFilename();
-		// 파일 확장자 구하기
-		String extension = 
-				fileName.substring(uploadFile.getOriginalFilename().lastIndexOf(".")+1);
-		// 시간으로 파일 리네임하기
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-		String fileRename = sdf.format(new Date(System.currentTimeMillis()))+"."+extension;
-		// 파일 저장 전 폴더 만들기
-		File saveFolder = new File(savePath);
-		if(!saveFolder.exists()) {
-			saveFolder.mkdir();
-		}
-		// 파일 저장
-		File saveFile = new File(savePath+"\\"+fileRename);
-		uploadFile.transferTo(saveFile);
-		long fileLength = uploadFile.getSize();
-		// 파일 정보 리턴
-		fileMap.put("fileName", fileName);
-		fileMap.put("fileRename", fileRename);
-		fileMap.put("filePath", "../resources/nuploadFiles/"+fileRename);
-		fileMap.put("fileLength", fileLength);
-		return fileMap;
-	}
+//	public Map<String, Object> saveFile(HttpServletRequest request, MultipartFile uploadFile) throws Exception {
+//		Map<String, Object> fileMap = new HashMap<String, Object>();
+//		// resources 경로 구하기
+//		String root = request.getSession().getServletContext().getRealPath("resources");
+//		// 파일 저장경로 구하기
+//		String savePath = root + "\\nuploadFiles";
+//		// 파일 이름 구하기
+//		String fileName = uploadFile.getOriginalFilename();
+//		// 파일 확장자 구하기
+//		String extension = 
+//				fileName.substring(uploadFile.getOriginalFilename().lastIndexOf(".")+1);
+//		// 시간으로 파일 리네임하기
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+//		String fileRename = sdf.format(new Date(System.currentTimeMillis()))+"."+extension;
+//		// 파일 저장 전 폴더 만들기
+//		File saveFolder = new File(savePath);
+//		if(!saveFolder.exists()) {
+//			saveFolder.mkdir();
+//		}
+//		// 파일 저장
+//		File saveFile = new File(savePath+"\\"+fileRename);
+//		uploadFile.transferTo(saveFile);
+//		long fileLength = uploadFile.getSize();
+//		// 파일 정보 리턴
+//		fileMap.put("fileName", fileName);
+//		fileMap.put("fileRename", fileRename);
+//		fileMap.put("filePath", "../resources/nuploadFiles/"+fileRename);
+//		fileMap.put("fileLength", fileLength);
+//		return fileMap;
+//	}
 	
 	@RequestMapping(value="/notice/list.do", method=RequestMethod.GET)
 	public ModelAndView showNoticeList(
@@ -115,13 +115,13 @@ public class NoticeController {
 			if(!nList.isEmpty()) {
 				mv.addObject("nList", nList).addObject("pInfo", pInfo).setViewName("notice/list");
 			} else {
-				mv.addObject("msg", "게시글 전체 조회가 완료되지 않았습니다.");
-				mv.addObject("error", "게시글 조회 실패");
+				mv.addObject("msg", "공지사항 전체 조회가 완료되지 않았습니다.");
+				mv.addObject("error", "공지사항 조회 실패");
 				mv.addObject("url", "/notice/list.do");
 				mv.setViewName("common/serviceFailed");
 			}
 		} catch (Exception e) {
-			mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+			mv.addObject("msg", "공지사항 조회가 완료되지 않았습니다.");
 			mv.addObject("error", e.getMessage());
 			mv.addObject("url", "/notice/list.do");
 			mv.setViewName("common/serviceFailed");
@@ -135,15 +135,15 @@ public class NoticeController {
 			Notice noticeOne = nService.selectNoticeByNo(noticeNo);
 			if(noticeOne != null) {
 					mv.addObject("notice", noticeOne);
-					mv.setViewName("notice/detail.do");
+					mv.setViewName("notice/detail");
 			} else {
-				mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
-				mv.addObject("error", "게시글 상세 조회 실패");
+				mv.addObject("msg", "공지사항 조회가 완료되지 않았습니다.");
+				mv.addObject("error", "공지사항 상세 조회 실패");
 				mv.addObject("url", "/notice/list.do");
 				mv.setViewName("common/serviceFailed");
 			}
 		} catch (Exception e) {
-			mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+			mv.addObject("msg", "공지사항 조회가 완료되지 않았습니다.");
 			mv.addObject("error", e.getMessage());
 			mv.addObject("url", "/notice/list.do");
 			mv.setViewName("common/serviceFailed");
@@ -170,25 +170,25 @@ public class NoticeController {
 			, @RequestParam("noticeNo") Integer noticeNo
 			, HttpSession session) {
 		try {
-			String userId = (String)session.getAttribute("userId");
+//			String userId = (String)session.getAttribute("userId");
 			Notice notice = new Notice();
 			notice.setNoticeNo(noticeNo);
-			notice.setUserId(userId);
-			if(userId != null && userId.equals(userId)) {
+//			notice.setUserId(userId);
+//			if(userId != null && userId.equals(userId)) {
 				int result = nService.deleteNotice(notice);
 				if(result > 0) {
 					mv.setViewName("redirect:/notice/list.do");
 				} else {
-					mv.addObject("msg", "게시글 삭제가 완료되지 않았습니다.");
-					mv.addObject("error", "게시글 삭제 실패");
+					mv.addObject("msg", "공지사항 삭제가 완료되지 않았습니다.");
+					mv.addObject("error", "공지사항 삭제 실패");
 					mv.addObject("url", "/notice/list.do");
 					mv.setViewName("common/serviceFailed");
-				}
-			} else {
-				mv.addObject("msg", "본인이 작성한 글만 삭제할 수 있습니다.");
-				mv.addObject("error", "게시글 삭제 불가");
-				mv.addObject("url", "/notice/list.do");
-				mv.setViewName("common/serviceFailed");
+//				}
+//			} else {
+//				mv.addObject("msg", "본인이 작성한 글만 삭제할 수 있습니다.");
+//				mv.addObject("error", "공지사항 삭제 불가");
+//				mv.addObject("url", "/notice/list.do");
+//				mv.setViewName("common/serviceFailed");
 			}
 		} catch (Exception e) {
 			mv.addObject("msg", "관리자에게 문의바랍니다.");
@@ -205,9 +205,9 @@ public class NoticeController {
 		try {
 			Notice notice = nService.selectNoticeByNo(noticeNo);
 			mv.addObject("notice", notice);
-			mv.setViewName("notice/modify.do");
+			mv.setViewName("notice/modify");
 		} catch (Exception e) {
-			mv.addObject("msg", "게시글 조회가 완료되지 않았습니다.");
+			mv.addObject("msg", "공지사항 조회가 완료되지 않았습니다.");
 			mv.addObject("error", e.getMessage());
 			mv.addObject("url", "/notice/detail.do?noticeNo="+noticeNo);
 			mv.setViewName("common/serviceFailed");
@@ -218,45 +218,23 @@ public class NoticeController {
 	@RequestMapping(value="/notice/modify.do", method=RequestMethod.POST)
 	public ModelAndView NoticeModify(ModelAndView mv
 			, @ModelAttribute Notice notice
-			, @RequestParam(value="uploadFile", required=false) MultipartFile uploadFile
 			, HttpSession session
 			, HttpServletRequest request) {
 		try {
-			String userId = (String) session.getAttribute("userId");
-			String writeuserId = notice.getUserId();
-			if(writeuserId != null && writeuserId.equals(userId)) {
-				if(uploadFile != null && !uploadFile.isEmpty()) {
-					String fileRename = notice.getNoticeFileRename();
-					if(fileRename != null) {
-						this.deleteFile(fileRename, request);
-					}
-				Map<String, Object> rFileMap = this.saveFile(request,  uploadFile);
-				notice.setNoticeFileName((String)rFileMap.get("fileName"));
-				notice.setNoticeFileRename((String)rFileMap.get("fileRename"));
-				notice.setNoticeFilePath((String)rFileMap.get("filePath"));
-				notice.setNoticeFileLength((long)rFileMap.get("fileLength"));
-			// 수정이라는 과정은 대체하는 것, 대체하는 방법은 삭제 후 등록
-				}
-//				if(board.getBoardFilename() == null) {
-//					board.setBoardFilename("");
-//					board.setBoardFileRename("");
-//					board.setBoardFilepath("");
-//				}
 			int result = nService.updateNotice(notice);
 			if(result > 0) {
 				mv.setViewName("redirect:/notice/detail.do?noticeNo="+notice.getNoticeNo());
 			} else {
-				mv.addObject("msg", "게시글 수정이 완료되지 않았습니다.");
-				mv.addObject("error", "게시글 수정 실패");
+				mv.addObject("msg", "공지사항 수정이 완료되지 않았습니다.");
+				mv.addObject("error", "공지사항 수정 실패");
 				mv.addObject("url", "/notice/modify.do?noticeNo="+notice.getNoticeNo());
 				mv.setViewName("common/serviceFailed");
 			}
-			} else {
-				mv.addObject("msg", "게시글 수정 권한이 없습니다.");
-				mv.addObject("error", "게시글 수정 실패");
-				mv.addObject("url", "/notice/modify.do?noticeNo="+notice.getNoticeNo());
-				mv.setViewName("common/serviceFailed");
-			}
+//			} else {
+//				mv.addObject("msg", "공지사항 수정 권한이 없습니다.");
+//				mv.addObject("error", "공지사항 수정 실패");
+//				mv.addObject("url", "/notice/modify.do?noticeNo="+notice.getNoticeNo());
+//				mv.setViewName("common/serviceFailed");
 		} catch (Exception e) {
 			mv.addObject("msg", "관리자에게 문의바랍니다.");
 			mv.addObject("error", e.getMessage());
@@ -266,15 +244,7 @@ public class NoticeController {
 		return mv;
 	}
 
-	private void deleteFile(String fileRename, HttpServletRequest request) {
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		String delPath = root + "\\uploadFiles\\" + fileRename;
-		File delFile = new File(delPath);
-		if(delFile.exists()) {
-			delFile.delete();
-		}
 		
-	}
 	@RequestMapping(value="/notice/search.do", method=RequestMethod.GET)
 	public String searchNoticeList(
 			@RequestParam("searchCondition") String searchCondition
