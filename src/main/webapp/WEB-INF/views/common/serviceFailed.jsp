@@ -11,7 +11,7 @@
 		<h2>${error }</h2>
 		<script>
 			const result = '${msg }';
-			const url = '${url }';
+			location.href = "${url}";
 			alert(result);
 		</script>
 	</body>

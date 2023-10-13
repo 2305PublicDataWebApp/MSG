@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="getTeamWorkingTime" resultMap="workingTimeResultMap">
-		SELECT * FROM WORKTIME_TBL WHERE DATEWITHID LIKE '%'||#{dataVal}||'%'
+		SELECT * FROM WORKTIME_TBL WHERE DATEWITHID LIKE '%'||#{dateWithId}||'%' AND PROJECT_NO = #{projectNo}
 	</select>
 
 </mapper>

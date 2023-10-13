@@ -3,7 +3,11 @@ package com.kh.msg.project.controller;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -16,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.msg.project.domain.Project;
+import com.kh.msg.project.domain.SideProject;
 import com.kh.msg.project.domain.WorkingTime;
 import com.kh.msg.project.service.ProjectService;
 
@@ -26,8 +32,44 @@ public class ProjectController {
 	private ProjectService pService;
 	
 	@RequestMapping(value="/project/myInfo.do", method=RequestMethod.GET)
-	public ModelAndView ShowProjectPage(ModelAndView mv) {
+	public ModelAndView ShowProjectPage(ModelAndView mv, HttpSession session) {
+		List<Project> pList = pService.getProjectById("khuser01");
+		mv.addObject("pList", pList);
 		mv.setViewName("project/projectMyPage");
+		return mv;
+	}
+	
+	@RequestMapping(value="/project/createProject.do", method=RequestMethod.GET)
+	public ModelAndView addProject(ModelAndView mv, @RequestParam("userId") String userId,
+			@RequestParam("projectName") String projectName) {
+		try {
+			Map<String, String> paramMap = new HashMap<String, String>();
+			// put() 메소드를 사용해서 key-value 설정을 함
+			paramMap.put("userId", userId);
+			paramMap.put("projectName", projectName);
+			Project pro = pService.checkSameProjectName(paramMap);
+			if(pro == null) {System.out.println("@@@@@@@@@@@@@");
+				int result = pService.addProject(paramMap);
+				System.out.println(result);
+				if(result > 0) {System.out.println("################");
+					List<Project> pList = pService.getProjectById(userId);
+					mv.addObject("pList", pList);
+					mv.setViewName("project/projectMyPage");
+				} else {
+					mv.addObject("msg", "프로젝트 생성 실패.관리자에게 문의하세요.");
+					mv.addObject("url", "/project/myInfo.do");
+					mv.setViewName("common/serviceFailed");
+				}
+			} else {
+				mv.addObject("msg", "프로젝트 생성 실패.프로젝트 이름 중복.");
+				mv.addObject("url", "/project/myInfo.do");
+				mv.setViewName("common/serviceFailed");
+			}
+		} catch (Exception e) {
+			mv.addObject("msg", "프로젝트 생성 불가.관리자에게 문의하세요.");
+			mv.addObject("url", "/project/myInfo.do");
+			mv.setViewName("common/serviceFailed");
+		}
 		return mv;
 	}
 	
@@ -52,8 +94,10 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value="/moim/moimMain.do", method=RequestMethod.GET)
-	public ModelAndView showMoimMain(ModelAndView mv) {
-		
+	public ModelAndView showMoimMain(ModelAndView mv, @RequestParam("projectNo") Integer projectNo,
+			@RequestParam("projectName") String projectName) {
+		//List<SideProject> sList = pService.getSideProjectByNo();
+		mv.addObject("projectName", projectName);
 		mv.setViewName("moim/moimMain");
 		return mv;
 	}
@@ -112,21 +156,25 @@ public class ProjectController {
 	
 	@ResponseBody
 	@RequestMapping(value="/moim/teamWorkingTime.do", produces="application/json;charset=utf-8", method=RequestMethod.GET)
-	public String showTeamWorkingTime(@RequestParam("dataVal") String dataVal) {
-		List<WorkingTime> wList = pService.getTeamWorkingTime(dataVal);
+	public String showTeamWorkingTime(@ModelAttribute WorkingTime workingTime) {
+		List<WorkingTime> wList = pService.getTeamWorkingTime(workingTime);
 		JSONArray jsonArr = new JSONArray();
 		if(wList.size() > 0) {
 			for(WorkingTime team : wList) {
 				JSONObject json = new JSONObject();
 				json.put("userId", team.getUserId());
-				json.put("startWork", team.getStartWork());
-				json.put("endWork", team.getEndWork());
+				json.put("startWork", team.getStartWork().toString());
+				if(team.getEndWork() == null) {
+					json.put("endWork", "퇴근 미처리");
+				} else {
+					json.put("endWork", team.getEndWork().toString());
+				}
 				jsonArr.add(json);
 			}
 			System.out.println(jsonArr.toString());
-			return jsonArr.toString();
 		} else {
-			return "noData";
+			System.out.println(jsonArr.toString());
 		}
+		return jsonArr.toString();
 	}
 }

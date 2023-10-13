@@ -32,7 +32,7 @@
 							class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
 							data-bs-toggle="collapse" aria-expanded="false">My Page</button>
 					</a>
-					<li class="mb-1">
+					<!-- <li class="mb-1">
 						<button
 							class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
 							data-bs-toggle="collapse" data-bs-target="#dashboard-collapse"
@@ -45,16 +45,20 @@
 								<li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">subProject4</a></li>
 							</ul>
 						</div>
-					</li>
-				</div>
-				<div class='bd-sidebar-footer'>
-					참가자 <br> jys
+					</li> -->
+					<ul>
+						<c:forEach var="project" items="${pList }">
+							<li><a href="/moim/moimMain.do?projectNo=${project.projectNo }&projectName=${project.projectName}">${project.projectName }</a></li>
+						</c:forEach>
+					</ul>
 				</div>
 			</div>
 			<main class="col-9 py-md-3 pl-md-5 bd-content" role="main">
 				<div class="bd-content-title">
 					<h1>My Page</h1>
 					<hr>
+					<button onclick="addProject();">프로젝트 생성하기</button>
+					<!-- <button onclick="location.href='/project/createProject.do?userId=khuser01'">프로젝트 생성하기</button> -->
 				</div>
 				<div class="bd-content-content">
 					<div class="user-info">
@@ -86,6 +90,16 @@
 			</main>
 		</div>
 	</div>
+	<script>
+		function addProject(){
+			var userInput = window.prompt("프로젝트 제목을 입력해주세요:", "");
+			if (userInput != null) {
+				location.href="/project/createProject.do?userId=khuser01&projectName=" + userInput;
+			} else {
+				  alert("입력이 취소되었거나 아무 내용도 입력하지 않았습니다.");
+				}
+		}
+	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"
 		integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="

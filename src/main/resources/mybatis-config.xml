@@ -8,10 +8,12 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="com.kh.msg.project.domain.WorkingTime" alias="WorkingTime"/>
+		<typeAlias type="com.kh.msg.project.domain.Project" alias="Project"/>
 		<typeAlias type="com.kh.msg.notice.domain.Notice" alias="Notice"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/workingTime-mapper.xml"/>
+		<mapper resource="mappers/project-mapper.xml"/>
 		<mapper resource="mappers/notice/notice-mapper.xml"/>
 	</mappers>
 </configuration>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProjectMapper">
+	<resultMap type="Project" id="projectResultMap">
+		<id property="projectNo" column="PROJECT_NO" />
+		<result property="projectName" column="PROJECT_NAME" />
+		<result property="projectCreater" column="PROJECT_CREATER" />	
+		<result property="projectCreateDate" column="PROJECT_CREAT_DATE" />	
+		<result property="projectMember" column="PROJECT_MEMBER" />	
+	</resultMap>
+	
+	<insert id="addProject">
+		INSERT INTO PROJECT_TBL VALUES(SEQ_PROJECT_NO.NEXTVAL, #{projectName}, #{userId}, DEFAULT, #{userId})
+	</insert>
+	
+	<select id="getProjectById" resultMap="projectResultMap">
+		SELECT * FROM PROJECT_TBL WHERE PROJECT_MEMBER = #{userId}
+	</select>
+	
+	<select id="checkSameProjectName" resultMap="projectResultMap">
+		SELECT * FROM PROJECT_TBL WHERE PROJECT_NAME = #{projectName} AND (PROJECT_CREATER = #{userId} OR PROJECT_MEMBER = #{userId})
+	</select>
+
+
+</mapper>

@@ -7,7 +7,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="/resources/css/reset.css">
-      <link rel="stylesheet" href="/resources/css/moim.css">
+      <link rel="stylesheet" href="/resources/css/project/project.css">
       <script src="https://kit.fontawesome.com/dbb376a4c5.js" crossorigin="anonymous"></script>
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,22 +26,23 @@
 		  <div class="row flex-nowrap">
 		    <div class="col-3 bd-sidebar">
 		      <div class="bd-sidebar-body">
+		      <h2>${projectName }</h2>
 		        <ul class="nav">
-		          <li><a href="/moim/moimSide.do">회의방</a></li>
-		          <li><a href="/moim/workingSchedule.do">출결 관리</a></li>
-		          <li><a>대화방 추가+</a></li>
+		          <li><a href="/project/subProject.do">회의방</a></li>
+		          <li><a href="/moim/workingSchedule.do?projectNo=${project.projectNo }">출결 관리</a></li>
 		        </ul>
 		        <br>
 		      </div>
 		      <div class='bd-sidebar-footer'>
 		        참가자
 		        <br>
-		        jys <button>알림 문자</button>
+		        jys
 		      </div>
 		    </div>
 		    <main class="col-9 py-md-3 pl-md-5 bd-content" role="main">
-		      <h1>Group A</h1>
+		      <h1>${projectName }</h1>
 		      <hr>
+		      <button onclick="addSideProject();">사이드 프로젝트 생성하기</button>
 		      <div class="mainFlex">
 			      <div class="profile"></div>
 			      <div class="calrender"></div>
@@ -61,6 +62,15 @@
 		</div>
 	</div>
 	<script>
+	function addSideProject(){
+		var userInput = window.prompt("사이드 프로젝트 제목을 입력해주세요:", "");
+		if (userInput != null) {
+			location.href="/project/createSideProject.do?projectNo=${project.projectNo}&sideProjectName=" + userInput;
+		} else {
+			  alert("입력이 취소되었거나 아무 내용도 입력하지 않았습니다.");
+			}
+	};
+	
 	document.querySelector(".addStartTime").addEventListener("click", () => {
 		var data = {'userId': "khuser01",'projectNo':"2"};
 		$.ajax({
